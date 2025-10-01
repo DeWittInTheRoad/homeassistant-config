@@ -1,0 +1,30 @@
+# === TEMPLATE.YAML ===
+# Template-based entities for custom logic
+
+- binary_sensor:
+    - name: "Upstairs Gate (Reversed)"
+      unique_id: upstairs_gate_reversed
+      device_class: door
+      # Reverse logic: gate is "on" when original sensor is "off"
+      state: >
+        {{ is_state('binary_sensor.gate_sensor_opening', 'off') }}
+
+# - sensor:
+#     - name: "Merlin Charging"
+#       unique_id: merlin_charging
+#       state: >
+#         {{ states('input_text.merlin_charging') | default('not_charging') }}
+
+
+- binary_sensor:
+      - name: "Merlin Charging"
+        unique_id: merlin_charging
+        device_class: battery_charging
+        state: >
+          {% set power = states('sensor.sams_watch_charger_power_average') | float(0) %}
+          {% set current = states('sensor.sams_watch_charger_current_average') | float(0) %}
+          {{ (power > 0.08) or (current > 0.006) }}
+        delay_on:
+          seconds: 30   # must be charging for 30s before ON
+        delay_off:
+          seconds: 180

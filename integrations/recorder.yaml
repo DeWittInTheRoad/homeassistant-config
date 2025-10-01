@@ -1,0 +1,3 @@
+# === RECORDER.YAML ===
+# Stores historical data in MariaDB
+db_url: !secret recorder_db_url

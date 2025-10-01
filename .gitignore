@@ -1,0 +1,48 @@
+# === HOME ASSISTANT CONFIG GITIGNORE ===
+
+# 🔑 Secrets (NEVER commit this file)
+secrets.yaml
+
+# 🔄 Backups / Snapshots
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.log
+*.bak
+*.backup
+
+# 🗂️ System/Runtime files
+.storage/
+.cloud/
+deps/
+__pycache__/
+*.pyc
+
+# 📊 Recorder / History DB files
+home-assistant_v2.db*
+home-assistant_v2.db-shm
+home-assistant_v2.db-wal
+
+# 📦 Add-ons / Custom Components cache
+custom_components/__pycache__/
+custom_components/*/__pycache__/
+
+# 🗄️ HACS (cache files only, not actual integrations)
+hacs/
+www/community/.storage/
+www/community/*/.storage/
+
+# 🚀 OS / Docker generated files
+*.tar
+*.gz
+*.zip
+*.tmp
+*.swp
+
+# 🧪 Debugging / temporary files
+*.test
+*.example
+*.old

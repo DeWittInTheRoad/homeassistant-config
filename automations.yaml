@@ -1,0 +1,953 @@
+- id: '1645121972503'
+  alias: 'House: Presence Detection: Turn on Living Room Lights when Brandon or Sam
+    get home 45 minutes before sunset'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    target:
+      entity_id: scene.living_room_evening
+  - action: light.turn_on
+    data: {}
+    target:
+      entity_id: light.hue_white_lamp_1_12
+  mode: single
+- id: '1645123251752'
+  alias: 'House: Presence Detection: Turn Off Lights when Family is away'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: group.family
+    from: home
+  conditions: []
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.dining
+      - light.kitchen
+      - light.living_room
+  mode: single
+- id: '1645381876007'
+  alias: Low Disk Google Drive Warning
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.backups_stale
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - action: notify.notify
+    data:
+      title: Low Disk Warning
+      message: Google Drive Backup Full
+  mode: single
+- id: '1645397215018'
+  alias: 'Living Room: Activate Evening Lights Scene 45 minutes before sunset'
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: -00:45:00
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    target:
+      entity_id: scene.living_room_evening
+  mode: single
+- id: '1645655609188'
+  alias: 'Dining Room: Motion Activated Entryway Light between 10:30pm and 8am'
+  description: ''
+  use_blueprint:
+    path: freakshock88/motion_illuminance_activated_entity.yaml
+    input:
+      target_entity: light.dining_room_entry_way_light
+      time_limit_after: input_datetime.bedtime
+      time_limit_before: input_datetime.wakeuptime
+      no_motion_wait: input_number.10
+      motion_sensor: binary_sensor.4_in_1_sensor_home_security_motion_detection
+- id: '1645823910978'
+  alias: 'Basement: Turn off Basement Light at Bedtime'
+  description: ''
+  triggers:
+  - trigger: time
+    at: input_datetime.bedtime
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.f74e0cd0e553902fdc5f064b6fdd9aba
+  mode: single
+- id: '1646458551450'
+  alias: 'Hallway: Motion Activated Light after Sunset'
+  description: ''
+  use_blueprint:
+    path: Marcos_Felipe/turn-light-on-and-off-based-on-detected-motion-with-sun-condition.yaml
+    input:
+      motion_entity: binary_sensor.lumi_lumi_sensor_motion_aq2_eb14f807_ias_zone
+      sunset_offset: 60
+      light_target:
+        entity_id:
+        - light.hallway
+- id: '1647141300603'
+  alias: 'Dining Room: Lock Doors when Sam or Brandon leaves the house'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: person.sam
+    from: home
+  - trigger: state
+    entity_id: person.brandon
+    from: home
+  conditions: []
+  actions:
+  - action: lock.lock
+    target:
+      entity_id: lock.side_door
+    data: {}
+  - action: lock.lock
+    target:
+      device_id: c201f42aed47f91878a153f9248ac77d
+    data: {}
+  mode: single
+- id: '1647141493933'
+  alias: 'Dining Room: Unlock House when Brandon or Sam gets home'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: person.brandon
+    from: not_home
+    to: home
+  - trigger: state
+    entity_id: person.sam
+    from: not_home
+    to: home
+  conditions: []
+  actions:
+  - action: lock.unlock
+    target:
+      entity_id: lock.side_door
+  - action: lock.unlock
+    target:
+      device_id: c201f42aed47f91878a153f9248ac77d
+    data: {}
+  mode: single
+- id: '1647906425536'
+  alias: 'Dining Room: Side Door: Lock after door is unlocked.'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - lock.side_door
+    to: unlocked
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  conditions: []
+  actions:
+  - action: lock.lock
+    target:
+      entity_id: lock.side_door
+  mode: single
+- id: '1692626003293'
+  alias: Lock Garage Door if unlocked for 20 minutes
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: lock.garage_door
+    from: locked
+    to: unlocked
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  conditions: []
+  actions:
+  - action: lock.lock
+    target:
+      entity_id: lock.8747d40d1654e0ff1e946528135feeaf
+  mode: single
+- id: '1692649106009'
+  alias: 'Dining Room: Unlock garage door when side door is unlocked'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: lock.side_door
+    from: locked
+    to: unlocked
+  conditions: []
+  actions:
+  - action: lock.unlock
+    data: {}
+    target:
+      entity_id: lock.garage_door
+  mode: single
+- id: '1715257566631'
+  alias: Push Notification to brandon's phone if refrigerator contact sensor is offline
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_ab18e107_on_off
+    to: unavailable
+  conditions: []
+  actions:
+  - action: notify.family_devices
+    data:
+      message: Refrigerator door is open
+  mode: single
+- id: '1715278725417'
+  alias: Dining Room Door Closed Sensor Unavailable
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.dining_room_door_opening
+    to: unavailable
+  conditions: []
+  actions:
+  - action: notify.mobile_app_lucy
+    data:
+      message: Side Door Close Sensor Unavailable
+  mode: single
+- id: '1715280746230'
+  alias: Notify If Gate Was Left Open
+  description: ''
+  triggers:
+  - trigger: device
+    type: not_opened
+    device_id: 1b838e6a0107f9c966cc779db3fc9396
+    entity_id: 6e60ff4f8694be9e0de4370799d590b2
+    domain: binary_sensor
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.upstairs_gate_reversed
+    state: 'on'
+  actions:
+  - action: notify.mobile_app_lucy
+    data:
+      message: Gate Left Open
+  - action: notify.mobile_app_fredrick2
+    data:
+      message: Gate left open
+  mode: single
+- id: '1715282125188'
+  alias: Push notification if side door contact sensor is offline
+  description: ''
+  triggers:
+  - trigger: device
+    device_id: 1b838e6a0107f9c966cc779db3fc9396
+    domain: zha
+    type: device_offline
+    subtype: device_offline
+  conditions: []
+  actions:
+  - action: notify.mobile_app_lucy
+    data:
+      message: Side Door Contact Sensor Offline
+  mode: single
+- id: '1715865574852'
+  alias: 'Kitchen: Push notification to Brandon''s phone when fridge door left open'
+  description: ''
+  triggers:
+  - trigger: device
+    type: opened
+    device_id: dec89cf186ff751b9b291d485f0a06fb
+    entity_id: fb7d3323821a5156dbe17343d093b1d3
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.family_devices
+    data:
+      message: Refrigerator Left Open
+  mode: single
+- id: '1735850719491'
+  alias: Turn Basement Light On/Off
+  description: ''
+  triggers:
+  - trigger: device
+    device_id: 5d0879c339587ed7b1445c2fdb912d0f
+    domain: zha
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  conditions: []
+  actions:
+  - action: switch.toggle
+    target:
+      device_id: 67a94d70b691877adf8fe8da8f6bdb31
+    data: {}
+  mode: single
+- id: '1750263486910'
+  alias: Side Door is open for more than one minute notification
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.dining_room_door_opening
+    to: 'on'
+    for:
+      minutes: 1
+  conditions: []
+  actions:
+  - variables:
+      opened_at: '{{ trigger.to_state.last_changed }}'
+  - action: notify.family_devices
+    data:
+      message: "{% set elapsed = as_timestamp(now()) - as_timestamp(opened_at) %}
+        {% set mins = (elapsed // 60) | int %} {% set secs = (elapsed % 60) | round(0)
+        | int %} {% if mins < 1 %}\n  Side Door has been open for {{ secs }} second{{
+        '' if secs == 1 else 's' }}\n{% else %}\n  Side Door has been open for {{
+        mins }} minute{{ '' if mins == 1 else 's' }}{% if secs > 0 %} and {{ secs
+        }} second{{ '' if secs == 1 else 's' }}{% endif %}\n{% endif %}\n"
+  - repeat:
+      while:
+      - condition: state
+        entity_id: binary_sensor.dining_room_door_opening
+        state: 'on'
+      sequence:
+      - wait_for_trigger:
+        - trigger: state
+          entity_id: binary_sensor.dining_room_door_opening
+          to: 'off'
+        timeout:
+          minutes: 1
+        continue_on_timeout: true
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: binary_sensor.dining_room_door_opening
+            state: 'on'
+          sequence:
+          - action: notify.family_devices
+            data:
+              message: "{% set elapsed = as_timestamp(now()) - as_timestamp(opened_at)
+                %} {% set mins = (elapsed // 60) | int %} {% set secs = (elapsed %
+                60) | round(0) | int %} {% if mins < 1 %}\n  Side Door has been open
+                for {{ secs }} second{{ '' if secs == 1 else 's' }}\n{% else %}\n
+                \ Side Door has been open for {{ mins }} minute{{ '' if mins == 1
+                else 's' }}{% if secs > 0 %} and {{ secs }} second{{ '' if secs ==
+                1 else 's' }}{% endif %}\n{% endif %}\n"
+  - action: notify.family_devices
+    data:
+      message: '{% set elapsed = as_timestamp(now()) - as_timestamp(opened_at) %}
+        {% set mins = (elapsed // 60) | int %} {% set secs = (elapsed % 60) | round(0)
+        | int %} Side Door is Closed (was open for {% if mins < 1 %}{{ secs }} second{{
+        '''' if secs == 1 else ''s'' }}{% else %}{{ mins }} minute{{ '''' if mins
+        == 1 else ''s'' }}{% if secs > 0 %} and {{ secs }} second{{ '''' if secs ==
+        1 else ''s'' }}{% endif %}{% endif %})
+
+        '
+  mode: restart
+- id: '1757278829721'
+  alias: Washing Machine Powered On
+  description: ''
+  triggers:
+  - trigger: device
+    type: power
+    device_id: dbbbffb1a9780f1bc4ab76b8eb41dd56
+    entity_id: a23b7a2760cf879c016f2e7ba670341d
+    domain: sensor
+    above: 50
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 3
+  conditions:
+  - condition: state
+    entity_id: input_boolean.washing_machine
+    state: 'off'
+  actions:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.washing_machine
+  mode: single
+- id: '1757280220535'
+  alias: Washing Machine Powered Off
+  description: ''
+  triggers:
+  - trigger: device
+    type: power
+    device_id: dbbbffb1a9780f1bc4ab76b8eb41dd56
+    entity_id: a23b7a2760cf879c016f2e7ba670341d
+    domain: sensor
+    below: 8
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: input_boolean.washing_machine
+    state: 'on'
+  actions:
+  - action: notify.mobile_app_lucy
+    data:
+      message: Washing Machine is done
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.washing_machine
+  - action: notify.mobile_app_fredrick2
+    data:
+      message: Washing machine is done
+  mode: single
+- id: '1757284769345'
+  alias: Dryer vibration on for a long time
+  description: ''
+  triggers:
+  - trigger: device
+    type: turned_on
+    device_id: 7914c337e4bcb80e0feef9e4cdc52b32
+    entity_id: 52627a28e42e6c1cab862def765a6274
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  conditions: []
+  actions:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.drying_machine_on
+  mode: single
+- id: '1757285511184'
+  alias: Dryer Finished
+  description: ''
+  triggers:
+  - trigger: device
+    type: turned_off
+    device_id: 7914c337e4bcb80e0feef9e4cdc52b32
+    entity_id: 52627a28e42e6c1cab862def765a6274
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: input_boolean.drying_machine_on
+    state: 'on'
+  actions:
+  - action: notify.mobile_app_lucy
+    data:
+      message: Dryer is done
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.drying_machine_on
+  - action: notify.mobile_app_fredrick2
+    data:
+      message: Dryer is done
+  mode: single
+- id: '1757637011062'
+  alias: Motion Activated Light with Luminance
+  description: ''
+  use_blueprint:
+    path: freakshock88/motion_illuminance_activated_entity.yaml
+    input:
+      motion_sensor: binary_sensor.4_in_1_sensor_home_security_motion_detection
+      target_entity: light.hue_white_lamp_1_12
+      illuminance_cutoff: input_number.61_100
+      illuminance_sensor: sensor.4_in_1_sensor_illuminance
+      no_motion_wait: input_number.10
+- id: '1757722400112'
+  alias: Kitchen Motion Light with Auto-Off + Safe Manual Override
+  description: Turn on kitchen light when motion is detected (if illuminance < 50),
+    turn off 5 minutes after last motion unless manually turned on.
+  triggers:
+  - trigger: state
+    id: motion_on
+    entity_id: binary_sensor.kitchen_motion_sensor
+    to: 'on'
+  - trigger: state
+    id: motion_off
+    entity_id: binary_sensor.kitchen_motion_sensor
+    to: 'off'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.auto_light_override
+    state: 'off'
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: motion_on
+      - condition: numeric_state
+        entity_id: sensor.kitchen_motion_sensor_illuminance
+        below: 300
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id: light.kitchen
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.kitchen_light_auto
+    - conditions:
+      - condition: trigger
+        id: motion_off
+      sequence:
+      - delay: 00:05:00
+      - condition: state
+        entity_id: binary_sensor.kitchen_motion_sensor
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.kitchen_light_auto
+        state: 'on'
+      - action: light.turn_off
+        target:
+          entity_id: light.kitchen
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.kitchen_light_auto
+  mode: restart
+- id: '1757724683272'
+  alias: Auto Light Override Enable (Manual ON)
+  description: Turns on the override switch if the kitchen light is manually turned
+    on.
+  triggers:
+  - trigger: state
+    entity_id: light.kitchen
+    to: 'on'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.kitchen_light_auto
+    state: 'off'
+  actions:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.auto_light_override
+  mode: single
+- id: '1757724711310'
+  alias: Auto Light Override Disable (Manual OFF)
+  description: Turns off the override switch if the kitchen light is manually turned
+    off.
+  triggers:
+  - trigger: state
+    entity_id: light.kitchen
+    to: 'off'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.kitchen_light_auto
+    state: 'off'
+  actions:
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.auto_light_override
+  mode: single
+- id: '1757724726448'
+  alias: Auto Light Override Reset at Sunrise
+  description: Turns off the override switch every sunrise to resume auto lighting.
+  triggers:
+  - trigger: sun
+    event: sunrise
+  actions:
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.auto_light_override
+  mode: single
+- id: '1757765608105'
+  alias: Porch Lights Turn On/Off during Sunset/Sunrise
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunrise
+    offset: 00:30:00
+    id: Sunrise
+  - trigger: sun
+    event: sunset
+    offset: -00:30:00
+    id: Sunset
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Sunrise
+      sequence:
+      - action: light.turn_off
+        target:
+          device_id: 165e6e79df5e78a6b759625a235bcc15
+    - conditions:
+      - condition: trigger
+        id: Sunset
+      sequence:
+      - action: light.turn_on
+        target:
+          device_id: 165e6e79df5e78a6b759625a235bcc15
+  mode: single
+- id: '1757785892027'
+  alias: Time To Cook Toggle
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: input_boolean.kitchen_time_to_cook
+    to: 'on'
+    id: Kitchen Time To Cook On
+  - trigger: state
+    entity_id: input_boolean.kitchen_time_to_cook
+    to: 'off'
+    id: Kitchen Time To Cook Off
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Kitchen Time To Cook On
+      sequence:
+      - action: scene.turn_on
+        target:
+          entity_id: scene.kitchen_time_to_cook
+    - conditions:
+      - condition: trigger
+        id: Kitchen Time To Cook Off
+      sequence:
+      - action: scene.turn_on
+        target:
+          entity_id: scene.kitchen_normal
+  mode: single
+- id: '1757806993161'
+  alias: Turn On Patio Lights at Night
+  description: ''
+  triggers:
+  - trigger: device
+    type: opened
+    device_id: 1b838e6a0107f9c966cc779db3fc9396
+    entity_id: 6e60ff4f8694be9e0de4370799d590b2
+    domain: binary_sensor
+  conditions:
+  - condition: sun
+    after: sunset
+    after_offset: -00:30:00
+  - condition: device
+    type: is_off
+    device_id: a235b93cf4f9b819e0554e6b4062cbf6
+    entity_id: 3a3ff6e8b6da2c8f2cfc403aaedb12de
+    domain: switch
+  actions:
+  - action: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.patio_lights
+  mode: single
+- id: '1757812250685'
+  alias: Dishwasher Turns On
+  description: ''
+  triggers:
+  - trigger: device
+    type: power
+    device_id: 1e5616a52f58130c95fd5a0f30d44489
+    entity_id: 89cbc5035eb2a88d8f3acfda3d25d5e0
+    domain: sensor
+    above: 50
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: input_boolean.dishwasher
+    state: 'off'
+  actions:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.dishwasher
+  mode: single
+- id: '1757812617819'
+  alias: Dishwasher Turns Off
+  description: ''
+  triggers:
+  - trigger: device
+    type: power
+    device_id: 1e5616a52f58130c95fd5a0f30d44489
+    entity_id: 89cbc5035eb2a88d8f3acfda3d25d5e0
+    domain: sensor
+    below: 8
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: input_boolean.dishwasher
+    state: 'on'
+  actions:
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.dishwasher
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.dishwasher_notification_button
+  mode: single
+- id: '1757814638355'
+  alias: Turn On Tablet after movement
+  description: ''
+  triggers:
+  - trigger: device
+    type: motion
+    device_id: 64325f8051beb554b767e4e549e81c13
+    entity_id: c38727677330bab1e94c53e76156cc62
+    domain: binary_sensor
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.kitchen_tablet_screensaver
+  mode: single
+- id: '1757859609946'
+  alias: Kitchen Motion Light
+  description: Turn on kitchen light on motion if dark, turn off 5 min after no motion
+  triggers:
+  - trigger: state
+    id: motion_on
+    entity_id: binary_sensor.kitchen_motion_sensor
+    to: 'on'
+  - trigger: state
+    id: motion_off
+    entity_id: binary_sensor.kitchen_motion_sensor
+    to: 'off'
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: motion_on
+      - condition: numeric_state
+        entity_id: sensor.kitchen_motion_sensor_illuminance
+        below: 300
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id: light.kitchen
+    - conditions:
+      - condition: trigger
+        id: motion_off
+      sequence:
+      - delay: 00:05:00
+      - condition: state
+        entity_id: binary_sensor.kitchen_motion_sensor
+        state: 'off'
+      - action: light.turn_off
+        target:
+          entity_id: light.kitchen
+  mode: restart
+- id: '1758236067471'
+  alias: Family Status Update
+  description: ''
+  use_blueprint:
+    path: fixtse/presence_non_binary.yaml
+    input:
+      person_device_tracker: person.brandon
+      person_input_select: input_select.presence_status_dropdown
+- id: '1758506529731'
+  alias: Lock Side Door when closed for 20 minutes
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.dining_room_door_opening
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.dining_room_door_opening
+    state: 'off'
+  actions:
+  - device_id: 7ed6947d7f1c31e7bb668bbd37c89611
+    domain: lock
+    entity_id: e502f8fb1ee7c3fd687bed48d36f85f0
+    type: lock
+  mode: single
+- id: '1758677904526'
+  alias: Turn Off Lights at Night
+  description: ''
+  triggers:
+  - trigger: time
+    at: '23:30:00'
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      floor_id: downstairs
+      entity_id: light.patio_lights_basic
+  mode: single
+- id: '1758937395960'
+  alias: Turn Off After Bedtime
+  description: ''
+  triggers:
+  - trigger: time
+    at: input_datetime.wakeuptime
+  conditions: []
+  actions:
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.after_bedtime
+  mode: single
+- id: '1758937882630'
+  alias: Motion Entryway Light After Bedtime
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.4_in_1_sensor_home_security_motion_detection
+    to: 'on'
+    id: Motion Detected
+  - trigger: state
+    entity_id:
+    - binary_sensor.4_in_1_sensor_home_security_motion_detection
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    id: Clear
+  conditions:
+  - condition: state
+    entity_id: input_boolean.after_bedtime
+    state: 'on'
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - Motion Detected
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 30
+        target:
+          entity_id: light.hue_white_lamp_1_12
+    - conditions:
+      - condition: trigger
+        id:
+        - Clear
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.hue_white_lamp_1_12
+  mode: single
+- id: '1758975893651'
+  alias: 'Entryway Light: Turn Off/On Based on Brightness (Hysteresis + Startup +
+    Recheck)'
+  description: Turns light on when lux is low, off when lux is high, prevents flicker,
+    rechecks periodically and at startup
+  triggers:
+  - trigger: numeric_state
+    entity_id: sensor.4_in_1_sensor_illuminance
+    below: 70
+    id: Low Light
+  - trigger: numeric_state
+    entity_id: sensor.4_in_1_sensor_illuminance
+    above: 90
+    id: Bright Light
+  - trigger: time_pattern
+    minutes: /5
+    id: Periodic Check
+  - trigger: homeassistant
+    event: start
+    id: Startup Check
+  conditions:
+  - condition: state
+    entity_id: input_boolean.after_bedtime
+    state: 'off'
+  actions:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: Low Light
+        - condition: and
+          conditions:
+          - condition: trigger
+            id:
+            - Periodic Check
+            - Startup Check
+          - condition: numeric_state
+            entity_id: sensor.4_in_1_sensor_illuminance
+            below: 70
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id: light.hue_white_lamp_1_12
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: Bright Light
+        - condition: and
+          conditions:
+          - condition: trigger
+            id:
+            - Periodic Check
+            - Startup Check
+          - condition: numeric_state
+            entity_id: sensor.4_in_1_sensor_illuminance
+            above: 90
+      sequence:
+      - action: light.turn_off
+        target:
+          entity_id: light.hue_white_lamp_1_12
+  initial_state: true
+  mode: single
+- id: '1758979279450'
+  alias: Dishwasher Power Monitoring
+  description: Tracks dishwasher power usage and updates state
+  triggers:
+  - trigger: numeric_state
+    id: dishwasher_on
+    entity_id:
+    - sensor.dishwasher_energy_monitor_current_consumption
+    above: 50
+    for:
+      minutes: 3
+  - trigger: numeric_state
+    id: dishwasher_off
+    entity_id:
+    - sensor.dishwasher_energy_monitor_current_consumption
+    below: 8
+    for:
+      minutes: 3
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: dishwasher_on
+      - condition: state
+        entity_id: input_boolean.dishwasher
+        state: 'off'
+      sequence:
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.dishwasher
+    - conditions:
+      - condition: trigger
+        id: dishwasher_off
+      - condition: state
+        entity_id: input_boolean.dishwasher
+        state: 'on'
+      sequence:
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.dishwasher
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.dishwasher_notification_button
+  mode: single

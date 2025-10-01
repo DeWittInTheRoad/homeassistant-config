@@ -1,0 +1,12 @@
+# === INPUT_SELECT.YAML ===
+# Dropdown menu for tracking presence state
+
+presence_status_dropdown:
+  name: Presence Status Dropdown
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+  initial: Home

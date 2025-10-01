@@ -1,0 +1,10 @@
+# === INPUT_BOOLEAN.YAML ===
+# Virtual switches for manual overrides or automations
+
+auto_light_override:
+  name: Auto Light Override
+  icon: mdi:lightbulb-off
+
+kitchen_light_auto:
+  name: Kitchen Light Auto On
+  icon: mdi:lightbulb-auto

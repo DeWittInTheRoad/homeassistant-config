@@ -1,0 +1,8 @@
+# === GROUPS.YAML ===
+# Defines entity groups for easier automation targeting
+
+family:
+  name: Family
+  entities:
+    - person.brandon
+    - person.sam

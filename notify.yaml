@@ -1,0 +1,23 @@
+# === NOTIFY.YAML ===
+# Notification services grouped by device owners
+
+# Brandon's devices
+- platform: group
+  name: brandons_devices
+  services:
+    - service: mobile_app_penny_lane_2
+    - service: mobile_app_penny_lane
+    - service: mobile_app_lucy
+
+# Sam's devices
+- platform: group
+  name: sams_devices
+  services:
+    - service: mobile_app_fredrick2
+
+# Combined family devices (Brandon + Sam)
+- platform: group
+  name: family_devices
+  services:
+    - service: brandons_devices
+    - service: sams_devices

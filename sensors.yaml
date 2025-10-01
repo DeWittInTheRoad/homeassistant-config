@@ -1,0 +1,82 @@
+# === SENSORS.YAML ===
+# Presence detection via ESPresense (BLE beacons)
+
+# Lucy's iPhone
+- platform: mqtt_room
+  name: "Lucy"
+  device_id: "phone:lucy"
+  state_topic: "espresense/devices/phone:lucy"
+  timeout: 5
+  away_timeout: 120
+
+# Brandon's Apple Watch
+- platform: mqtt_room
+  name: "Brandon's Apple Watch"
+  device_id: "watch:brandons-apple"
+  state_topic: "espresense/devices/watch:brandons-apple"
+  timeout: 5
+  away_timeout: 120
+
+# Brandon's Headphones
+- platform: mqtt_room
+  name: "Brandon's Headphones"
+  device_id: "2c41a1483810"
+  state_topic: "espresense/devices/2c41a1483810"
+  timeout: 5
+  away_timeout: 120
+
+# Penny Lane (iPad)
+- platform: mqtt_room
+  name: "Penny Lane"
+  device_id: "ipad:penny-lane"
+  state_topic: "espresense/devices/ipad:penny-lane"
+  timeout: 5
+  away_timeout: 120
+
+# Fredrick (phone)
+- platform: mqtt_room
+  name: "Fredrick"
+  device_id: "phone:fredrick"
+  state_topic: "espresense/devices/phone:fredrick"
+  timeout: 5
+  away_timeout: 120
+
+# Betty (iPad)
+- platform: mqtt_room
+  name: "Betty"
+  device_id: "ipad:betty"
+  state_topic: "espresense/devices/ipad:betty"
+  timeout: 5
+  away_timeout: 120
+
+# Podracers (BLE device)
+- platform: mqtt_room
+  name: "Podracers"
+  device_id: "d065443b5110"
+  state_topic: "espresense/devices/d065443b5110"
+  timeout: 5
+  away_timeout: 120
+
+# Merlin (Watch)
+- platform: mqtt_room
+  name: "Merlin"
+  device_id: "watch:merlin"
+  state_topic: "espresense/devices/watch:merlin"
+  timeout: 5
+  away_timeout: 120
+    
+- platform: statistics
+  name: "Sams Watch Charger Power Average"
+  entity_id: sensor.third_reality_inc_3rsp02028bz_power_2
+  state_characteristic: mean
+  max_age:
+    minutes: 2
+  precision: 3
+
+- platform: statistics
+  name: "Sams Watch Charger Current Average"
+  entity_id: sensor.third_reality_inc_3rsp02028bz_current_2
+  state_characteristic: mean
+  max_age:
+    minutes: 2
+  precision: 3

@@ -1,0 +1,4 @@
+# === FRONTEND.YAML ===
+# Loads custom Lovelace resources (via HACS)
+extra_module_url:
+  - /hacsfiles/lovelace-card-mod/card-mod.js

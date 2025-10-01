@@ -1,0 +1,22 @@
+# === CORE SETUP ===
+# Loads the default Home Assistant setup (frontend, api, etc.)
+default_config:
+
+# === INTEGRATIONS ===
+# Split core integrations into dedicated files for maintainability
+recorder: !include integrations/recorder.yaml
+tts: !include integrations/tts.yaml
+frontend: !include integrations/frontend.yaml
+nest: !include integrations/nest.yaml
+
+# === DOMAIN INCLUDES ===
+# Keep each domain (automation, script, etc.) in its own file
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+group: !include groups.yaml
+notify: !include notify.yaml
+sensor: !include sensors.yaml
+template: !include template.yaml
+input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml

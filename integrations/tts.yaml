@@ -1,0 +1,13 @@
+# === TTS.YAML ===
+# Text-to-speech examples using secrets for API keys
+
+# Google Translate TTS (default)
+- platform: google_translate
+
+# Azure TTS (example, requires secrets)
+# - platform: microsoft
+#   api_key: !secret azure_speech_key
+
+# OpenAI TTS (example, requires secrets)
+# - platform: openai_tts
+#   api_key: !secret openai_api_key

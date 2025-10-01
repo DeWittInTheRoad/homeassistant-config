@@ -1,0 +1,9 @@
+echo_tts:
+  alias: echo tts
+  sequence:
+  - service: notify.alexa_media_echo
+    data:
+      message: Test
+      data:
+        type: tts
+  mode: single

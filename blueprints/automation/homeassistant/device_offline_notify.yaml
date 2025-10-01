@@ -1,0 +1,101 @@
+blueprint:
+  name: Notify when any selected device is offline (with recovery + cooldown, no helpers)
+  description: >
+    Monitors multiple entities and sends a notification when any selected device
+    has been offline (not_home/unavailable/unknown/offline) for longer than the
+    specified duration. Sends a second notification when the device recovers,
+    including how long it was offline. Includes a cooldown so the same device
+    won’t notify too frequently. Cooldown resets on Home Assistant restart.
+  domain: automation
+  input:
+    devices_to_monitor:
+      name: Devices to monitor
+      description: >
+        Select one or more entities that represent device presence/availability.
+        Works best with device_tracker, binary_sensor, or sensor entities.
+      selector:
+        entity:
+          multiple: true
+    offline_for:
+      name: Offline duration
+      description: How long the device must be offline before notifying.
+      default:
+        hours: 0
+        minutes: 10
+        seconds: 0
+      selector:
+        duration: {}
+    notify_service:
+      name: Notification service
+      description: >
+        Enter a notify service to call (e.g. notify.mobile_app_yourphone,
+        notify.family_devices, notify.notify).
+      default: notify.notify
+      selector:
+        text:
+    cooldown_minutes:
+      name: Cooldown period
+      description: >
+        Minimum minutes between notifications for the same device
+        (applies separately to offline and recovery alerts).
+      default: 30
+      selector:
+        number:
+          min: 1
+          max: 1440
+          unit_of_measurement: minutes
+
+mode: parallel
+max: 50
+
+variables:
+  offline_states: ["not_home", "unavailable", "unknown", "offline"]
+  cooldown: !input cooldown_minutes
+
+triggers:
+  # Went offline
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    to: not_home
+    for: !input offline_for
+    id: went_offline
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    to: unavailable
+    for: !input offline_for
+    id: went_offline
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    to: unknown
+    for: !input offline_for
+    id: went_offline
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    to: offline
+    for: !input offline_for
+    id: went_offline
+
+  # Came back online
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    from: not_home
+    id: came_online
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    from: unavailable
+    id: came_online
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    from: unknown
+    id: came_online
+  - trigger: state
+    entity_id: !input devices_to_monitor
+    from: offline
+    id: came_online
+
+actions:
+  - variables:
+      trig_entity: "{{ trigger.entity_id }}"
+      trig_state: "{{ states(trigger.entity_id) }}"
+      trig_name: >-
+        {{
