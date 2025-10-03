@@ -154,9 +154,7 @@
     - lock.side_door
     to: unlocked
     for:
-      hours: 0
-      minutes: 20
-      seconds: 0
+      minutes: "{{ states('input_number.auto_lock_delay_minutes') | int }}"
   actions:
   - action: lock.lock
     target:
@@ -171,9 +169,7 @@
     from: locked
     to: unlocked
     for:
-      hours: 0
-      minutes: 20
-      seconds: 0
+      minutes: "{{ states('input_number.auto_lock_delay_minutes') | int }}"
   actions:
   - action: lock.lock
     target:
@@ -268,9 +264,7 @@
     entity_id: fb7d3323821a5156dbe17343d093b1d3  # Refrigerator door binary sensor
     domain: binary_sensor
     for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+      minutes: "{{ states('input_number.refrigerator_door_alert_minutes') | int }}"
   actions:
   - action: notify.family_devices
     data:
@@ -431,9 +425,7 @@
     entity_id: 52627a28e42e6c1cab862def765a6274  # Dryer vibration binary sensor
     domain: binary_sensor
     for:
-      hours: 0
-      minutes: 3
-      seconds: 0
+      minutes: "{{ states('input_number.appliance_done_delay_minutes') | int }}"
   conditions:
   - condition: state
     entity_id: input_boolean.drying_machine_on
@@ -580,7 +572,7 @@
         id: motion_on
       - condition: numeric_state
         entity_id: sensor.kitchen_motion_sensor_illuminance
-        below: 300
+        below: "{{ states('input_number.motion_light_illuminance_threshold') | int }}"
       - condition: state
         entity_id: input_boolean.auto_light_override
         state: 'off'
