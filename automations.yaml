@@ -1,3 +1,7 @@
+# ==========================================
+# PRESENCE DETECTION
+# ==========================================
+
 - id: '1645121972503'
   alias: 'House: Presence Detection: Turn on Living Room Lights when Brandon or Sam
     get home 45 minutes before sunset'
@@ -30,6 +34,11 @@
       - light.kitchen
       - light.living_room
   mode: single
+
+# ==========================================
+# SYSTEM MONITORING
+# ==========================================
+
 - id: '1645381876007'
   alias: Low Disk Google Drive Warning
   description: Sends notification when Google Drive backup storage is full
@@ -44,6 +53,11 @@
       title: Low Disk Warning
       message: Google Drive Backup Full
   mode: single
+
+# ==========================================
+# LIGHTING
+# ==========================================
+
 - id: '1645397215018'
   alias: 'Living Room: Activate Evening Lights Scene 45 minutes before sunset'
   description: Activates living room evening scene 45 minutes before sunset
@@ -89,6 +103,11 @@
       light_target:
         entity_id:
         - light.hallway
+
+# ==========================================
+# SECURITY - LOCKS & DOORS
+# ==========================================
+
 - id: '1647141300603'
   alias: 'Dining Room: Lock Doors when Sam or Brandon leaves the house'
   description: Locks side door and garage door when either person leaves home
@@ -174,6 +193,11 @@
     target:
       entity_id: lock.garage_door
   mode: single
+
+# ==========================================
+# SENSOR OFFLINE NOTIFICATIONS
+# ==========================================
+
 - id: '1715257566631'
   alias: Push Notification to brandon's phone if refrigerator contact sensor is offline
   description: Alerts when refrigerator contact sensor becomes unavailable
@@ -230,6 +254,11 @@
     data:
       message: Side Door Contact Sensor Offline
   mode: single
+
+# ==========================================
+# DOOR & APPLIANCE ALERTS
+# ==========================================
+
 - id: '1715865574852'
   alias: 'Kitchen: Push notification to Brandon''s phone when fridge door left open'
   description: Alerts when refrigerator door has been left open for 5 minutes
@@ -321,6 +350,11 @@
 
         '
   mode: restart
+
+# ==========================================
+# APPLIANCES
+# ==========================================
+
 - id: '1757278829721'
   alias: Washing Machine Powered On
   description: Tracks when washing machine starts running based on power consumption
@@ -453,6 +487,11 @@
         target:
           device_id: 165e6e79df5e78a6b759625a235bcc15  # Porch lights device
   mode: single
+
+# ==========================================
+# SCENES & TOGGLES
+# ==========================================
+
 - id: '1757785892027'
   alias: Time To Cook Toggle
   description: Activates kitchen cooking scene or normal scene based on toggle state
@@ -594,6 +633,11 @@
         target:
           entity_id: light.kitchen
   mode: single
+
+# ==========================================
+# PRESENCE STATUS
+# ==========================================
+
 - id: '1758236067471'
   alias: Family Status Update
   description: Updates presence status for Brandon using blueprint
@@ -754,6 +798,11 @@
           entity_id: light.hue_white_lamp_1_12
   initial_state: true
   mode: single
+
+# ==========================================
+# DISHWASHER MONITORING
+# ==========================================
+
 - id: '1758979279450'
   alias: Dishwasher Power Monitoring
   description: Tracks dishwasher power usage and sends notification when cycle completes
