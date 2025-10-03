@@ -42,7 +42,7 @@
     to: 'on'
   conditions: []
   actions:
-  - action: notify.notify
+  - action: notify.mobile_app_lucy
     data:
       title: Low Disk Warning
       message: Google Drive Backup Full
@@ -224,12 +224,9 @@
     entity_id: binary_sensor.upstairs_gate_reversed
     state: 'on'
   actions:
-  - action: notify.mobile_app_lucy
+  - action: notify.family_devices
     data:
       message: Gate Left Open
-  - action: notify.mobile_app_fredrick2
-    data:
-      message: Gate left open
   mode: single
 - id: '1715282125188'
   alias: Push notification if side door contact sensor is offline
@@ -382,15 +379,12 @@
     entity_id: input_boolean.washing_machine
     state: 'on'
   actions:
-  - action: notify.mobile_app_lucy
+  - action: notify.family_devices
     data:
       message: Washing Machine is done
   - action: input_boolean.turn_off
     target:
       entity_id: input_boolean.washing_machine
-  - action: notify.mobile_app_fredrick2
-    data:
-      message: Washing machine is done
   mode: single
 - id: '1757284769345'
   alias: Dryer vibration on for a long time
@@ -429,15 +423,12 @@
     entity_id: input_boolean.drying_machine_on
     state: 'on'
   actions:
-  - action: notify.mobile_app_lucy
+  - action: notify.family_devices
     data:
       message: Dryer is done
   - action: input_boolean.turn_off
     target:
       entity_id: input_boolean.drying_machine_on
-  - action: notify.mobile_app_fredrick2
-    data:
-      message: Dryer is done
   mode: single
 - id: '1757637011062'
   alias: Motion Activated Light with Luminance
