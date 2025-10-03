@@ -1,9 +1,9 @@
-2025-09-28 09:30:01.367 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration spotifyplus which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-09-28 09:30:01.370 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration adaptive_lighting which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-09-28 09:30:01.373 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-09-28 09:30:01.375 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration alexa_media which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-09-28 09:30:01.377 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration watchman which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-09-28 09:30:59.276 WARNING (MainThread) [homeassistant.util.loop] Detected blocking call to open with args ('/usr/local/lib/python3.13/site-packages/pytz/zoneinfo/Africa/Abidjan', 'rb') inside the event loop by integration 'caldav' at homeassistant/components/caldav/coordinator.py, line 111: if not hasattr(event.instance, "vevent"): (offender: /usr/local/lib/python3.13/site-packages/pytz/__init__.py, line 108: return open(filename, 'rb')), please create a bug report at https://github.com/home-assistant/core/issues?q=is%3Aopen+is%3Aissue+label%3A%22integration%3A+caldav%22
+2025-10-02 20:04:03.733 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration spotifyplus which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-10-02 20:04:03.737 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration adaptive_lighting which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-10-02 20:04:03.740 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-10-02 20:04:03.742 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration alexa_media which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-10-02 20:04:03.745 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration watchman which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-10-02 20:05:01.266 WARNING (MainThread) [homeassistant.util.loop] Detected blocking call to open with args ('/usr/local/lib/python3.13/site-packages/pytz/zoneinfo/Africa/Abidjan', 'rb') inside the event loop by integration 'caldav' at homeassistant/components/caldav/coordinator.py, line 111: if not hasattr(event.instance, "vevent"): (offender: /usr/local/lib/python3.13/site-packages/pytz/__init__.py, line 108: return open(filename, 'rb')), please create a bug report at https://github.com/home-assistant/core/issues?q=is%3Aopen+is%3Aissue+label%3A%22integration%3A+caldav%22
 For developers, please see https://developers.home-assistant.io/docs/asyncio_blocking_operations/#open
 Traceback (most recent call last):
   File "<frozen runpy>", line 198, in _run_module_as_main
@@ -29,15 +29,69 @@ Traceback (most recent call last):
   File "/usr/src/homeassistant/homeassistant/components/caldav/coordinator.py", line 111, in _async_update_data
     if not hasattr(event.instance, "vevent"):
 
-2025-09-28 09:31:07.696 WARNING (MainThread) [homeassistant.components.light] Setup of light platform hue is taking over 10 seconds.
-2025-09-28 09:31:07.697 WARNING (MainThread) [homeassistant.components.calendar] Setup of calendar platform caldav is taking over 10 seconds.
-2025-09-28 09:31:07.697 WARNING (MainThread) [homeassistant.components.todo] Setup of todo platform caldav is taking over 10 seconds.
-2025-09-28 09:31:55.816 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
-2025-09-28 09:35:55.751 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
-2025-09-28 09:38:56.533 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
-2025-09-28 09:41:58.225 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
-2025-09-28 09:44:59.794 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
-2025-09-28 09:48:59.799 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
-2025-09-28 09:52:59.748 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
-2025-09-28 09:54:31.022 ERROR (MainThread) [pubnub] session.request exception: Connector is closed.
-2025-09-28 09:54:39.558 WARNING (MainThread) [homeassistant.runner] Task could not be canceled and was still running after shutdown: <Task cancelling name='Task-900' coro=<FcmPushClient._listen() running at /usr/local/lib/python3.13/site-packages/firebase_messaging/fcmpushclient.py:728> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-10-02 20:05:09.577 WARNING (MainThread) [homeassistant.components.media_player] Setup of media_player platform samsungtv is taking over 10 seconds.
+2025-10-02 20:05:09.578 WARNING (MainThread) [homeassistant.components.calendar] Setup of calendar platform caldav is taking over 10 seconds.
+2025-10-02 20:05:09.578 WARNING (MainThread) [homeassistant.components.todo] Setup of todo platform caldav is taking over 10 seconds.
+2025-10-02 20:05:22.392 WARNING (MainThread) [homeassistant.bootstrap] Waiting on integrations to complete setup: {('zha', '0d8533fe137f246fdda8e0d36a80ea3f'): 5268.298079779}
+2025-10-02 20:05:57.164 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:08:57.214 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:11:57.239 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:15:57.126 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:18:57.201 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:22:58.133 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:26:58.161 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:30:58.130 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:33:58.147 WARNING (MainThread) [ring_doorbell.doorbot] Your Ring account does not have an active subscription.
+2025-10-02 20:37:41.922 ERROR (MainThread) [pubnub] session.request exception: Connector is closed.
+2025-10-02 20:37:45.360 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 for modules 'Time, AutoOff, DeviceModule, Energy, Matter, PowerProtection' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.360 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_device_time' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.361 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_auto_off_config' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.361 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_device_info' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.362 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_device_usage' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.362 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_energy_usage' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.362 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_current_power' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.363 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_emeter_data' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.363 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_emeter_vgain_igain' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.363 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_matter_setup_info' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.364 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_protection_power' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.364 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_max_power' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:45.364 ERROR (MainThread) [homeassistant.components.tplink.coordinator] Error fetching 192.168.50.195 data: Unable to communicate with the device update: get_device_info not found in {'get_device_time': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_auto_off_config': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_device_info': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_device_usage': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_energy_usage': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_current_power': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_emeter_data': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_emeter_vgain_igain': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_matter_setup_info': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_protection_power': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>, 'get_max_power': <SmartErrorCode.INTERNAL_QUERY_ERROR: -100001>} for device 192.168.50.195
+2025-10-02 20:37:49.353 ERROR (MainThread) [homeassistant.components.samsungtv] Unexpected error fetching samsungtv data
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/update_coordinator.py", line 392, in _async_refresh
+    self.data = await self._async_update_data()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/components/samsungtv/coordinator.py", line 53, in _async_update_data
+    self.is_on = await self.bridge.async_is_on()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/components/samsungtv/bridge.py", line 512, in async_is_on
+    info = await self.async_device_info(force=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/components/samsungtv/bridge.py", line 580, in async_device_info
+    device_info: dict[str, Any] = await self._rest_api.rest_device_info()
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/samsungtvws/async_rest.py", line 58, in rest_device_info
+    return await self._rest_request("")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/samsungtvws/async_rest.py", line 49, in _rest_request
+    async with future as resp:
+               ^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/aiohttp/client.py", line 1488, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/aiohttp/client.py", line 527, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+2025-10-02 20:37:50.361 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 for modules 'Time, AutoOff, DeviceModule, Energy, Matter, PowerProtection' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.361 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_device_time' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.362 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_auto_off_config' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.362 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_device_info' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.363 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_device_usage' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.363 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_energy_usage' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.363 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_current_power' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.364 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_emeter_data' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.364 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_emeter_vgain_igain' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.365 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_matter_setup_info' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.365 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_protection_power' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.365 ERROR (MainThread) [kasa.smart.smartdevice] Error querying 192.168.50.195 individually for module query 'get_max_power' after first update: ('Unable to query the device: 192.168.50.195: Session is closed', RuntimeError('Session is closed'))
+2025-10-02 20:37:50.562 WARNING (MainThread) [homeassistant.runner] Task could not be canceled and was still running after shutdown: <Task cancelling name='Task-841' coro=<FcmPushClient._listen() running at /usr/local/lib/python3.13/site-packages/firebase_messaging/fcmpushclient.py:728> wait_for=<Future pending cb=[Task.task_wakeup()]>>
