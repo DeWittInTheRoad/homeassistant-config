@@ -7,7 +7,6 @@
     entity_id: group.family
     from: not_home
     to: home
-  conditions: []
   actions:
   - action: scene.turn_on
     target:
@@ -23,7 +22,6 @@
   - trigger: state
     entity_id: group.family
     from: home
-  conditions: []
   actions:
   - action: light.turn_off
     target:
@@ -40,7 +38,6 @@
     entity_id: binary_sensor.backups_stale
     from: 'off'
     to: 'on'
-  conditions: []
   actions:
   - action: notify.mobile_app_lucy
     data:
@@ -54,7 +51,6 @@
   - trigger: sun
     event: sunset
     offset: -00:45:00
-  conditions: []
   actions:
   - action: scene.turn_on
     target:
@@ -77,7 +73,6 @@
   triggers:
   - trigger: time
     at: input_datetime.bedtime
-  conditions: []
   actions:
   - action: switch.turn_off
     target:
@@ -104,7 +99,6 @@
   - trigger: state
     entity_id: person.brandon
     from: home
-  conditions: []
   actions:
   - action: lock.lock
     target:
@@ -125,7 +119,6 @@
     entity_id: person.sam
     from: not_home
     to: home
-  conditions: []
   actions:
   - action: lock.unlock
     target:
@@ -146,7 +139,6 @@
       hours: 0
       minutes: 20
       seconds: 0
-  conditions: []
   actions:
   - action: lock.lock
     target:
@@ -164,7 +156,6 @@
       hours: 0
       minutes: 20
       seconds: 0
-  conditions: []
   actions:
   - action: lock.lock
     target:
@@ -178,7 +169,6 @@
     entity_id: lock.side_door
     from: locked
     to: unlocked
-  conditions: []
   actions:
   - action: lock.unlock
     target:
@@ -191,7 +181,6 @@
   - trigger: state
     entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_ab18e107_on_off
     to: unavailable
-  conditions: []
   actions:
   - action: notify.family_devices
     data:
@@ -204,7 +193,6 @@
   - trigger: state
     entity_id: binary_sensor.dining_room_door_opening
     to: unavailable
-  conditions: []
   actions:
   - action: notify.mobile_app_lucy
     data:
@@ -237,7 +225,6 @@
     domain: zha
     type: device_offline
     subtype: device_offline
-  conditions: []
   actions:
   - action: notify.mobile_app_lucy
     data:
@@ -256,7 +243,6 @@
       hours: 0
       minutes: 5
       seconds: 0
-  conditions: []
   actions:
   - action: notify.family_devices
     data:
@@ -271,7 +257,6 @@
     domain: zha
     type: remote_button_short_press
     subtype: remote_button_short_press
-  conditions: []
   actions:
   - action: switch.toggle
     target:
@@ -286,7 +271,6 @@
     to: 'on'
     for:
       minutes: 1
-  conditions: []
   actions:
   - variables:
       opened_at: '{{ trigger.to_state.last_changed }}'
@@ -399,7 +383,6 @@
       hours: 0
       minutes: 2
       seconds: 0
-  conditions: []
   actions:
   - action: input_boolean.turn_on
     target:
@@ -453,7 +436,6 @@
     event: sunset
     offset: -00:30:00
     id: Sunset
-  conditions: []
   actions:
   - choose:
     - conditions:
@@ -483,7 +465,6 @@
     entity_id: input_boolean.kitchen_time_to_cook
     to: 'off'
     id: Kitchen Time To Cook Off
-  conditions: []
   actions:
   - choose:
     - conditions:
@@ -533,7 +514,6 @@
     device_id: 64325f8051beb554b767e4e549e81c13  # Kitchen tablet motion sensor device
     entity_id: c38727677330bab1e94c53e76156cc62  # Kitchen tablet motion binary sensor
     domain: binary_sensor
-  conditions: []
   actions:
   - action: switch.turn_off
     target:
@@ -555,7 +535,6 @@
     entity_id: light.kitchen
     to: 'off'
     id: manual_off
-  conditions: []
   actions:
   - choose:
     - conditions:
@@ -598,7 +577,6 @@
     entity_id: input_boolean.auto_light_override
     to: 'off'
     id: Override Off
-  conditions: []
   actions:
   - choose:
     - conditions:
@@ -652,7 +630,6 @@
   triggers:
   - trigger: time
     at: '23:30:00'
-  conditions: []
   actions:
   - action: light.turn_off
     target:
@@ -665,7 +642,6 @@
   triggers:
   - trigger: time
     at: input_datetime.wakeuptime
-  conditions: []
   actions:
   - action: input_boolean.turn_off
     target:
@@ -701,7 +677,6 @@
         - Motion Detected
       sequence:
       - action: light.turn_on
-        metadata: {}
         data:
           brightness_pct: 30
         target:
@@ -797,7 +772,6 @@
     below: 8
     for:
       minutes: 3
-  conditions: []
   actions:
   - choose:
     - conditions:
