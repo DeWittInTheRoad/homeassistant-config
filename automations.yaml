@@ -3,7 +3,7 @@
 # ==========================================
 
 - id: '1645121972503'
-  alias: Presence: Turn On Lights on Arrival
+  alias: 'Presence: Turn On Lights on Arrival'
   description: Activates living room evening scene and entryway lamp when family arrives home
   triggers:
   - trigger: state
@@ -19,7 +19,7 @@
       entity_id: light.hue_white_lamp_1_12
   mode: single
 - id: '1645123251752'
-  alias: Presence: Turn Off Lights on Departure
+  alias: 'Presence: Turn Off Lights on Departure'
   description: Turns off dining, kitchen, and living room lights when everyone leaves home
   triggers:
   - trigger: state
@@ -39,7 +39,7 @@
 # ==========================================
 
 - id: '1645381876007'
-  alias: System: Low Disk Google Drive Warning
+  alias: 'System: Low Disk Google Drive Warning'
   description: Sends notification when Google Drive backup storage is full
   triggers:
   - trigger: state
@@ -58,7 +58,7 @@
 # ==========================================
 
 - id: '1645397215018'
-  alias: Lighting: Living Room Evening Scene Before Sunset
+  alias: 'Lighting: Living Room Evening Scene Before Sunset'
   description: Activates living room evening scene 45 minutes before sunset
   triggers:
   - trigger: sun
@@ -70,7 +70,7 @@
       entity_id: scene.living_room_evening
   mode: single
 - id: '1645655609188'
-  alias: Lighting: Dining Room Motion Light (Nighttime)
+  alias: 'Lighting: Dining Room Motion Light (Nighttime)'
   description: Motion-activated entryway light during nighttime hours using blueprint
   use_blueprint:
     path: freakshock88/motion_illuminance_activated_entity.yaml
@@ -81,7 +81,7 @@
       no_motion_wait: input_number.10
       motion_sensor: binary_sensor.4_in_1_sensor_home_security_motion_detection
 - id: '1645823910978'
-  alias: Lighting: Turn Off Basement Light at Bedtime
+  alias: 'Lighting: Turn Off Basement Light at Bedtime'
   description: Turns off laundry area smart plug at bedtime
   triggers:
   - trigger: time
@@ -92,7 +92,7 @@
       entity_id: switch.laundry_area_mini_smart_plug
   mode: single
 - id: '1646458551450'
-  alias: Lighting: Hallway Motion Light After Sunset
+  alias: 'Lighting: Hallway Motion Light After Sunset'
   description: Motion-activated hallway light after sunset using blueprint
   use_blueprint:
     path: Marcos_Felipe/turn-light-on-and-off-based-on-detected-motion-with-sun-condition.yaml
@@ -108,7 +108,7 @@
 # ==========================================
 
 - id: '1647141300603'
-  alias: Security: Lock Doors on Departure
+  alias: 'Security: Lock Doors on Departure'
   description: Locks side door and garage door when either person leaves home
   triggers:
   - trigger: state
@@ -126,7 +126,7 @@
       entity_id: lock.garage_door
   mode: single
 - id: '1647141493933'
-  alias: Security: Unlock Doors on Arrival
+  alias: 'Security: Unlock Doors on Arrival'
   description: Unlocks side door and garage door when either person arrives home
   triggers:
   - trigger: state
@@ -146,7 +146,7 @@
       entity_id: lock.garage_door
   mode: single
 - id: '1647906425536'
-  alias: Security: Auto-Lock Side Door After 20min
+  alias: 'Security Auto-Lock Side Door After 20min'
   description: Auto-locks side door 20 minutes after being unlocked
   triggers:
   - trigger: state
@@ -161,7 +161,7 @@
       entity_id: lock.side_door
   mode: single
 - id: '1692626003293'
-  alias: Security: Auto-Lock Garage Door After 20min
+  alias: 'Security: Auto-Lock Garage Door After 20min'
   description: Auto-locks garage door 20 minutes after being unlocked
   triggers:
   - trigger: state
@@ -176,7 +176,7 @@
       entity_id: lock.garage_door
   mode: single
 - id: '1692649106009'
-  alias: Security: Unlock Garage When Side Door Opens
+  alias: 'Security: Unlock Garage When Side Door Opens'
   description: Unlocks garage door when side door is unlocked for convenient access
   triggers:
   - trigger: state
@@ -194,7 +194,7 @@
 # ==========================================
 
 - id: '1715257566631'
-  alias: Sensors: Refrigerator Sensor Offline Alert
+  alias: 'Sensors: Refrigerator Sensor Offline Alert'
   description: Alerts when refrigerator contact sensor becomes unavailable
   triggers:
   - trigger: state
@@ -206,7 +206,7 @@
       message: Refrigerator contact sensor is offline
   mode: single
 - id: '1715278725417'
-  alias: Sensors: Side Door Sensor Offline Alert
+  alias: 'Sensors: Side Door Sensor Offline Alert'
   description: Alerts when side door contact sensor becomes unavailable
   triggers:
   - trigger: state
@@ -218,7 +218,7 @@
       message: Side Door Close Sensor Unavailable
   mode: single
 - id: '1715280746230'
-  alias: Alerts: Gate Left Open
+  alias: 'Alerts: Gate Left Open'
   description: Sends notification when upstairs gate is left open
   triggers:
   - trigger: device
@@ -236,7 +236,7 @@
       message: Gate Left Open
   mode: single
 - id: '1715282125188'
-  alias: Sensors: Side Door Device Offline Alert
+  alias: 'Sensors: Side Door Device Offline Alert'
   description: Alerts when side door contact sensor goes offline
   triggers:
   - trigger: device
@@ -255,7 +255,7 @@
 # ==========================================
 
 - id: '1715865574852'
-  alias: Alerts: Refrigerator Door Left Open
+  alias: 'Alerts: Refrigerator Door Left Open'
   description: Alerts when refrigerator door has been left open for 5 minutes
   triggers:
   - trigger: device
@@ -271,7 +271,7 @@
       message: Refrigerator Left Open
   mode: single
 - id: '1735850719491'
-  alias: Controls: Basement Light Remote Toggle
+  alias: 'Controls: Basement Light Remote Toggle'
   description: Toggles basement light using remote button short press
   triggers:
   - trigger: device
@@ -285,7 +285,7 @@
       device_id: 67a94d70b691877adf8fe8da8f6bdb31  # Basement light switch device
   mode: single
 - id: '1750263486910'
-  alias: Alerts: Side Door Open Timer
+  alias: 'Alerts: Side Door Open Timer'
   description: Sends periodic notifications with elapsed time when side door is left open
   triggers:
   - trigger: state
@@ -349,7 +349,7 @@
 # ==========================================
 
 - id: '1757278829721'
-  alias: Appliances: Washing Machine Started
+  alias: 'Appliances: Washing Machine Started'
   description: Tracks when washing machine starts running based on power consumption
   triggers:
   - trigger: device
@@ -372,7 +372,7 @@
       entity_id: input_boolean.washing_machine
   mode: single
 - id: '1757280220535'
-  alias: Appliances: Washing Machine Finished
+  alias: 'Appliances: Washing Machine Finished'
   description: Sends notification when washing machine cycle is complete
   triggers:
   - trigger: device
@@ -398,7 +398,7 @@
       entity_id: input_boolean.washing_machine
   mode: single
 - id: '1757284769345'
-  alias: Appliances: Dryer Started
+  alias: 'Appliances: Dryer Started'
   description: Tracks when dryer starts running based on vibration sensor
   triggers:
   - trigger: device
@@ -416,7 +416,7 @@
       entity_id: input_boolean.drying_machine_on
   mode: single
 - id: '1757285511184'
-  alias: Appliances: Dryer Finished
+  alias: 'Appliances: Dryer Finished'
   description: Sends notification when dryer cycle is complete
   triggers:
   - trigger: device
@@ -439,7 +439,7 @@
       entity_id: input_boolean.drying_machine_on
   mode: single
 - id: '1757637011062'
-  alias: Lighting: Entryway Motion Light with Luminance
+  alias: 'Lighting: Entryway Motion Light with Luminance'
   description: Motion-activated entryway light with illuminance threshold using blueprint
   use_blueprint:
     path: freakshock88/motion_illuminance_activated_entity.yaml
@@ -450,7 +450,7 @@
       illuminance_sensor: sensor.4_in_1_sensor_illuminance
       no_motion_wait: input_number.10
 - id: '1757765608105'
-  alias: Lighting: Porch Lights Sunset/Sunrise Schedule
+  alias: 'Lighting: Porch Lights Sunset/Sunrise Schedule'
   description: Turns porch lights on 30min before sunset and off 30min after sunrise
   triggers:
   - trigger: sun
@@ -484,7 +484,7 @@
 # ==========================================
 
 - id: '1757785892027'
-  alias: Scenes: Kitchen Time To Cook Toggle
+  alias: 'Scenes: Kitchen Time To Cook Toggle'
   description: Activates kitchen cooking scene or normal scene based on toggle state
   triggers:
   - trigger: state
@@ -513,7 +513,7 @@
           entity_id: scene.kitchen_normal
   mode: single
 - id: '1757806993161'
-  alias: Lighting: Turn On Patio Lights at Night
+  alias: 'Lighting: Turn On Patio Lights at Night'
   description: Turns on patio lights when side door opens during evening/night hours (from 30min before sunset onwards)
   triggers:
   - trigger: device
@@ -536,7 +536,7 @@
       entity_id: switch.patio_lights
   mode: single
 - id: '1757814638355'
-  alias: Controls: Wake Kitchen Tablet on Motion
+  alias: 'Controls: Wake Kitchen Tablet on Motion'
   description: Disables kitchen tablet screensaver when motion detected
   triggers:
   - trigger: device
@@ -550,7 +550,7 @@
       entity_id: switch.kitchen_tablet_screensaver
   mode: restart
 - id: '1757859609946'
-  alias: Lighting: Kitchen Motion Light
+  alias: 'Lighting: Kitchen Motion Light'
   description: Turn on kitchen light on motion if dark, respects manual override
   triggers:
   - trigger: state
@@ -596,7 +596,7 @@
           entity_id: input_boolean.auto_light_override
   mode: restart
 - id: '1758999999999'
-  alias: Controls: Kitchen Light Manual Override
+  alias: 'Controls: Kitchen Light Manual Override'
   description: Allows dashboard toggle control of kitchen light automation override
   triggers:
   - trigger: state
@@ -630,7 +630,7 @@
 # ==========================================
 
 - id: '1758236067471'
-  alias: Presence: Family Status Update
+  alias: 'Presence: Family Status Update'
   description: Updates presence status for Brandon using blueprint
   use_blueprint:
     path: fixtse/presence_non_binary.yaml
@@ -638,7 +638,7 @@
       person_device_tracker: person.brandon
       person_input_select: input_select.presence_status_dropdown
 - id: '1758506529731'
-  alias: Security: Auto-Lock Side Door When Closed
+  alias: 'Security: Auto-Lock Side Door When Closed'
   description: Auto-locks side door 20 minutes after being closed
   triggers:
   - trigger: state
@@ -660,7 +660,7 @@
     type: lock
   mode: single
 - id: '1758677904526'
-  alias: Lighting: Turn Off Downstairs Lights at Night
+  alias: 'Lighting: Turn Off Downstairs Lights at Night'
   description: Turns off downstairs and patio lights at 11:30 PM
   triggers:
   - trigger: time
@@ -672,7 +672,7 @@
       entity_id: light.patio_lights_basic
   mode: single
 - id: '1758937395960'
-  alias: Modes: Disable After-Bedtime Mode at Wakeup
+  alias: 'Modes: Disable After-Bedtime Mode at Wakeup'
   description: Disables after-bedtime mode at wakeup time
   triggers:
   - trigger: time
@@ -683,7 +683,7 @@
       entity_id: input_boolean.after_bedtime
   mode: single
 - id: '1758937882630'
-  alias: Lighting: Entryway Motion Light After Bedtime
+  alias: 'Lighting: Entryway Motion Light After Bedtime'
   description: Dims entryway light to 30% on motion during bedtime hours
   triggers:
   - trigger: state
@@ -726,7 +726,7 @@
           entity_id: light.hue_white_lamp_1_12
   mode: restart
 - id: '1758975893651'
-  alias: Lighting: Entryway Auto-Brightness Control
+  alias: 'Lighting: Entryway Auto-Brightness Control'
   description: Turns light on when lux is low, off when lux is high, prevents flicker,
     rechecks periodically and at startup
   triggers:
