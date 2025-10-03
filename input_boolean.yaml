@@ -3,4 +3,4 @@
 
 auto_light_override:
   name: Auto Light Override
-  icon: mdi:lightbulb-off
+  icon: mdi:motion-sensor-off
