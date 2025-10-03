@@ -538,7 +538,7 @@
   - action: switch.turn_off
     target:
       entity_id: switch.kitchen_tablet_screensaver
-  mode: single
+  mode: restart
 - id: '1757859609946'
   alias: Kitchen Motion Light
   description: Turn on kitchen light on motion if dark, respects manual override
@@ -714,7 +714,7 @@
       - action: light.turn_off
         target:
           entity_id: light.hue_white_lamp_1_12
-  mode: single
+  mode: restart
 - id: '1758975893651'
   alias: 'Entryway Light: Turn Off/On Based on Brightness (Hysteresis + Startup +
     Recheck)'
