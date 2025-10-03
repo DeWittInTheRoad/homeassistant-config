@@ -39,6 +39,30 @@ All automations now have descriptive text explaining their purpose:
 - No auto-off: Light stays on until manually turned off
 - Override respected: Motion won't turn on light if override is active
 
+### 7. Added Kitchen Light Manual Override Toggle Automation
+- New automation to allow dashboard toggle control of kitchen light override
+- Similar pattern to "Time To Cook Toggle"
+- When toggle ON: Turns kitchen light on and disables automation
+- When toggle OFF: Turns kitchen light off and re-enables automation
+- Uses `input_boolean.auto_light_override`
+
+### 8. Documented All Cryptic Device IDs
+Added inline comments to all remaining device/entity IDs:
+- Upstairs gate sensor device and binary sensor
+- Side door sensor device (multiple automations)
+- Refrigerator door sensor device and binary sensor
+- Basement remote button and light switch devices
+- Washing machine power monitor device and sensor
+- Dryer vibration sensor device and binary sensor
+- Porch lights device
+- Patio lights switch device and entity
+- Kitchen tablet motion sensor device and binary sensor
+- Side door lock device and entity
+
+### 9. Cleaned Up Unused Input Booleans
+- Removed `input_boolean.kitchen_light_auto` (no longer used after kitchen light refactoring)
+- Updated `input_boolean.auto_light_override` icon to `mdi:motion-sensor-off` for better visual representation
+
 ---
 
 ## Key Technical Decisions
@@ -68,57 +92,25 @@ All automations now have descriptive text explaining their purpose:
 
 ---
 
-## Remaining Device IDs to Document
-
-The following device IDs are still in use and may need friendly names or comments:
-
-### Sensors & Devices
-- `device_id: 1b838e6a0107f9c966cc779db3fc9396` - Used in gate/door automations (lines 219, 239, 519)
-- `device_id: dec89cf186ff751b9b291d485f0a06fb` - Refrigerator sensor (line 255)
-- `device_id: 5d0879c339587ed7b1445c2fdb912d0f` - Remote button for basement light (line 273)
-- `device_id: 67a94d70b691877adf8fe8da8f6bdb31` - Basement light switch (line 281)
-- `device_id: dbbbffb1a9780f1bc4ab76b8eb41dd56` - Washing machine power monitor (lines 349, 372)
-- `device_id: 7914c337e4bcb80e0feef9e4cdc52b32` - Dryer vibration sensor (lines 401, 420)
-- `device_id: 165e6e79df5e78a6b759625a235bcc15` - Porch lights (lines 474, 481)
-- `device_id: a235b93cf4f9b819e0554e6b4062cbf6` - Patio lights switch (line 528)
-- `device_id: 64325f8051beb554b767e4e549e81c13` - Kitchen tablet motion sensor (line 542)
-- `device_id: 7ed6947d7f1c31e7bb668bbd37c89611` - Side door lock (line 623)
-
-### Entity IDs Still Cryptic
-- `entity_id: 6e60ff4f8694be9e0de4370799d590b2` (line 520)
-- `entity_id: 3a3ff6e8b6da2c8f2cfc403aaedb12de` (line 529)
-- `entity_id: c38727677330bab1e94c53e76156cc62` (line 543)
-- `entity_id: e502f8fb1ee7c3fd687bed48d36f85f0` (line 625)
-
 ---
 
 ## Remaining Tasks / Future Improvements
 
-### High Priority
-1. **Add button/toggle automation for kitchen light manual override**
-   - Similar to "Time To Cook Toggle" automation (lines 483-512)
-   - Should toggle `input_boolean.auto_light_override`
-   - Allows easy manual control from dashboard
-
 ### Medium Priority
-2. **Add comments to document remaining cryptic device IDs**
-   - Either replace with friendly entity IDs or add inline comments
-   - Helps with future maintenance
-
-3. **Review inconsistent notification targets**
+1. **Review inconsistent notification targets**
    - Currently using: `notify.family_devices`, `notify.mobile_app_lucy`, `notify.mobile_app_fredrick2`
    - Determine if this is intentional or should be standardized
 
-4. **Review automation modes**
+2. **Review automation modes**
    - Most use `mode: single`
    - Some might benefit from `mode: restart` (especially motion-based automations)
 
 ### Low Priority (Optional)
-5. **Consider adding presence checks to light automations**
+3. **Consider adding presence checks to light automations**
    - Prevent lights turning on when away from home
    - May not be needed if existing logic works well
 
-6. **Review auto-lock timers**
+4. **Review auto-lock timers**
    - Currently 20 minutes for doors
    - May want to adjust for security preferences
 
@@ -189,8 +181,7 @@ The following device IDs are still in use and may need friendly names or comment
 - Current setup locks when first person leaves, unlocks when anyone arrives
 
 ### Input Booleans for State Tracking:
-- `input_boolean.auto_light_override` - Kitchen light manual override
-- `input_boolean.kitchen_light_auto` - No longer used (removed with old automation)
+- `input_boolean.auto_light_override` - Kitchen light manual override (icon: mdi:motion-sensor-off)
 - `input_boolean.after_bedtime` - Bedtime mode toggle
 - `input_boolean.washing_machine` - Washing machine running state
 - `input_boolean.drying_machine_on` - Dryer running state
@@ -200,5 +191,5 @@ The following device IDs are still in use and may need friendly names or comment
 
 ---
 
-*Last Updated: 2025-10-01*
+*Last Updated: 2025-10-02*
 *Improvements by: Claude Code Assistant*

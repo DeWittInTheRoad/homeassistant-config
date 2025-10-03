@@ -216,8 +216,8 @@
   triggers:
   - trigger: device
     type: not_opened
-    device_id: 1b838e6a0107f9c966cc779db3fc9396
-    entity_id: 6e60ff4f8694be9e0de4370799d590b2
+    device_id: 1b838e6a0107f9c966cc779db3fc9396  # Upstairs gate sensor device
+    entity_id: 6e60ff4f8694be9e0de4370799d590b2  # Upstairs gate binary sensor
     domain: binary_sensor
   conditions:
   - condition: state
@@ -236,7 +236,7 @@
   description: Alerts when side door contact sensor goes offline
   triggers:
   - trigger: device
-    device_id: 1b838e6a0107f9c966cc779db3fc9396
+    device_id: 1b838e6a0107f9c966cc779db3fc9396  # Side door contact sensor device
     domain: zha
     type: device_offline
     subtype: device_offline
@@ -252,8 +252,8 @@
   triggers:
   - trigger: device
     type: opened
-    device_id: dec89cf186ff751b9b291d485f0a06fb
-    entity_id: fb7d3323821a5156dbe17343d093b1d3
+    device_id: dec89cf186ff751b9b291d485f0a06fb  # Refrigerator door sensor device
+    entity_id: fb7d3323821a5156dbe17343d093b1d3  # Refrigerator door binary sensor
     domain: binary_sensor
     for:
       hours: 0
@@ -270,7 +270,7 @@
   description: Toggles basement light using remote button short press
   triggers:
   - trigger: device
-    device_id: 5d0879c339587ed7b1445c2fdb912d0f
+    device_id: 5d0879c339587ed7b1445c2fdb912d0f  # Basement remote button device
     domain: zha
     type: remote_button_short_press
     subtype: remote_button_short_press
@@ -278,7 +278,7 @@
   actions:
   - action: switch.toggle
     target:
-      device_id: 67a94d70b691877adf8fe8da8f6bdb31
+      device_id: 67a94d70b691877adf8fe8da8f6bdb31  # Basement light switch device
   mode: single
 - id: '1750263486910'
   alias: Side Door is open for more than one minute notification
@@ -346,8 +346,8 @@
   triggers:
   - trigger: device
     type: power
-    device_id: dbbbffb1a9780f1bc4ab76b8eb41dd56
-    entity_id: a23b7a2760cf879c016f2e7ba670341d
+    device_id: dbbbffb1a9780f1bc4ab76b8eb41dd56  # Washing machine power monitor device
+    entity_id: a23b7a2760cf879c016f2e7ba670341d  # Washing machine power sensor
     domain: sensor
     above: 50
     for:
@@ -369,8 +369,8 @@
   triggers:
   - trigger: device
     type: power
-    device_id: dbbbffb1a9780f1bc4ab76b8eb41dd56
-    entity_id: a23b7a2760cf879c016f2e7ba670341d
+    device_id: dbbbffb1a9780f1bc4ab76b8eb41dd56  # Washing machine power monitor device
+    entity_id: a23b7a2760cf879c016f2e7ba670341d  # Washing machine power sensor
     domain: sensor
     below: 8
     for:
@@ -398,8 +398,8 @@
   triggers:
   - trigger: device
     type: turned_on
-    device_id: 7914c337e4bcb80e0feef9e4cdc52b32
-    entity_id: 52627a28e42e6c1cab862def765a6274
+    device_id: 7914c337e4bcb80e0feef9e4cdc52b32  # Dryer vibration sensor device
+    entity_id: 52627a28e42e6c1cab862def765a6274  # Dryer vibration binary sensor
     domain: binary_sensor
     for:
       hours: 0
@@ -417,8 +417,8 @@
   triggers:
   - trigger: device
     type: turned_off
-    device_id: 7914c337e4bcb80e0feef9e4cdc52b32
-    entity_id: 52627a28e42e6c1cab862def765a6274
+    device_id: 7914c337e4bcb80e0feef9e4cdc52b32  # Dryer vibration sensor device
+    entity_id: 52627a28e42e6c1cab862def765a6274  # Dryer vibration binary sensor
     domain: binary_sensor
     for:
       hours: 0
@@ -471,14 +471,14 @@
       sequence:
       - action: light.turn_off
         target:
-          device_id: 165e6e79df5e78a6b759625a235bcc15
+          device_id: 165e6e79df5e78a6b759625a235bcc15  # Porch lights device
     - conditions:
       - condition: trigger
         id: Sunset
       sequence:
       - action: light.turn_on
         target:
-          device_id: 165e6e79df5e78a6b759625a235bcc15
+          device_id: 165e6e79df5e78a6b759625a235bcc15  # Porch lights device
   mode: single
 - id: '1757785892027'
   alias: Time To Cook Toggle
@@ -516,8 +516,8 @@
   triggers:
   - trigger: device
     type: opened
-    device_id: 1b838e6a0107f9c966cc779db3fc9396
-    entity_id: 6e60ff4f8694be9e0de4370799d590b2
+    device_id: 1b838e6a0107f9c966cc779db3fc9396  # Side door sensor device
+    entity_id: 6e60ff4f8694be9e0de4370799d590b2  # Side door binary sensor
     domain: binary_sensor
   conditions:
   - condition: sun
@@ -525,8 +525,8 @@
     after_offset: -00:30:00
   - condition: device
     type: is_off
-    device_id: a235b93cf4f9b819e0554e6b4062cbf6
-    entity_id: 3a3ff6e8b6da2c8f2cfc403aaedb12de
+    device_id: a235b93cf4f9b819e0554e6b4062cbf6  # Patio lights switch device
+    entity_id: 3a3ff6e8b6da2c8f2cfc403aaedb12de  # Patio lights switch entity
     domain: switch
   actions:
   - action: switch.turn_on
@@ -539,8 +539,8 @@
   triggers:
   - trigger: device
     type: motion
-    device_id: 64325f8051beb554b767e4e549e81c13
-    entity_id: c38727677330bab1e94c53e76156cc62
+    device_id: 64325f8051beb554b767e4e549e81c13  # Kitchen tablet motion sensor device
+    entity_id: c38727677330bab1e94c53e76156cc62  # Kitchen tablet motion binary sensor
     domain: binary_sensor
   conditions: []
   actions:
@@ -650,9 +650,9 @@
     entity_id: binary_sensor.dining_room_door_opening
     state: 'off'
   actions:
-  - device_id: 7ed6947d7f1c31e7bb668bbd37c89611
+  - device_id: 7ed6947d7f1c31e7bb668bbd37c89611  # Side door lock device
     domain: lock
-    entity_id: e502f8fb1ee7c3fd687bed48d36f85f0
+    entity_id: e502f8fb1ee7c3fd687bed48d36f85f0  # Side door lock entity
     type: lock
   mode: single
 - id: '1758677904526'
